@@ -1,5 +1,4 @@
-if ($_SERVER['REQUEST_URI'] == '/') {
-//Если адресная строка после домена пустая
+if ($_SERVER['REQUEST_URI'] == '/') {//Если адресная строка после домена пустая
     $Page = 'index';
     $Module = 'index';
     $Cub = 'index';

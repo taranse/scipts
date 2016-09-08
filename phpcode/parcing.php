@@ -5,13 +5,10 @@ if ($_SERVER['REQUEST_URI'] == '/') {//Если адресная строка п
     $Param = 'index';
 } 
 else {
-    $URL_Parts = explode('/', trim($_SERVER['REQUEST_URI'], ' /'));
-    //Делим на /
+    $URL_Parts = explode('/', trim($_SERVER['REQUEST_URI'], ' /')); //Делим на /
     for($i=0;$i<count($URL_Parts);$i++){
-        $URL_Parts[$i] = parse_url($URL_Parts[$i]);
-        //Парсим каждый элемент в двумерный массив
-        parse_str($URL_Parts[$i]['query'], $URL_Parts[$i]['query']);
-        //Парсим запрос после ? в Трехмерный массив
+        $URL_Parts[$i] = parse_url($URL_Parts[$i]); //Парсим каждый элемент в двумерный массив
+        parse_str($URL_Parts[$i]['query'], $URL_Parts[$i]['query']); //Парсим запрос после ? в Трехмерный массив
     }
     $Page = $URL_Parts[0]['path'];
     $Content = $URL_Parts[0]['query'];

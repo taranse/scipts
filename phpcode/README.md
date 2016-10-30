@@ -1,2 +1,2 @@
-# scripts
+# scipts
 Все скрипты

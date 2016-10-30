@@ -1,0 +1,30 @@
+<script>
+$('.contactme').submit(function(){
+	th = $(this);
+	$.ajax({
+		url: '', //Путь к файлу
+		type: 'POST',
+		data: th.serialize()
+	}).done(function() {
+		$('.info-error').css({'display': 'none'});
+		$('.info-success').css({'display':'block'});
+		setTimeout(function() {
+			$('.info-success').css({'animation':'hide 1s ease', opacity: 0});
+   			th.trigger("reset");
+		}, 1000);
+ 	}).fail(function(){
+		$('.info-error').css({'display':'block'});
+	});
+})
+</script>
+<style>
+	@-webkit-keyframes hide {
+		from {opacity: 1}
+		to {opacity: 0}
+	}
+	@keyframes hide {
+		from {opacity: 1}
+		to {opacity: 0}
+	}
+	
+</style>

@@ -75,6 +75,14 @@ var array = new Array();
 var pokemonList = new PokemonList(Pickachu, Bulbasaur);
 pokemonList.add('Charmander', 14, [21, 17, 76], 'fire');
 pokemonList.showList();
+var pokemonListNew = pokemonList.map(i => {
+  var object = {
+    name: i.name,
+    level: i.level + 5
+  }
+  return object;
+});
+console.log(pokemonListNew);
 // var pokemon = new Pokemon(Charmander);
 // pokemon.levelUp = true;
 // pokemon.show('Charmander');

@@ -1,0 +1,114 @@
+class PokemonList{
+  constructor(...list) {
+    for(var i in list){
+      this[list[i].name] = list[i].level
+    }
+  }
+  add(...list) {       
+    this[list[0]] = list[1];
+  }
+  move(names, list){
+    list[names] = this[names];
+    delete this[names];
+  }
+  showList(){
+    let mass = [];
+    for(var i in this){
+      if(typeof this[i] == "number") mass.push(` ${i} - ${this[i]}`)
+    }
+    console.log(`Количество покемонов в списке: ${Object.keys(this).length}\n ${mass}`);
+  }
+  max(){
+    let mass = [];
+    for(let i in this){
+      if(typeof this[i] == "number") mass.push(this[i]);
+    }
+    this.valueOf = () => Math.max(...mass);
+    console.log(+this)
+  }
+}
+
+class Pokemon {
+  constructor(...list) {
+    let [name, level, fraction, ability] = list;
+    this.name = name;
+    this.ability = ability;
+    this.fraction = fraction;
+    this.level = level;
+  }
+  show(name) {
+    if (this.name == name){
+      console.log(`
+        Покемон: ${this.name},
+        Уровень: ${this.level},
+        Характеристики: ${this.ability.strenght},${this.ability.agility},${this.ability.intelligence}
+        Фракция: ${this.fraction}
+      `);
+    }
+  }
+  set levelUp(name) {
+    if (this.name == name)
+      this.level += 1;
+  }
+}
+var Pickachu = {
+  name: 'Pickachu',
+  level: 13,
+  ability: {
+    strenght: 15,
+    agility: 18,
+    intelligence: 22
+  },
+  fraction: 'fire'
+}
+var Bulbasaur = {
+  name: 'Bulbasaur',
+  level: 21,
+  ability: {
+    strenght: 16,
+    agility: 25,
+    intelligence: 11
+  },
+  fraction: 'water'
+}
+var Charmander = {
+  name: 'Charmander',
+  level: 25,
+  ability: {
+    strenght: 14,
+    agility: 11,
+    intelligence: 19
+  },
+  fraction: 'fire'
+}
+var Meowt = {
+  name: 'Meowt',
+  level: 13,
+  ability: {
+    strenght: 10,
+    agility: 8,
+    intelligence: 5
+  },
+  fraction: 'earth'
+}
+
+const list = [
+  Pickachu,
+  Bulbasaur,
+  Charmander,
+  Meowt
+]
+
+const object = list.map(
+  obj => new Pokemon(obj.name, obj.level, obj.fraction, obj.ability)
+);
+
+
+object.map(i => i.levelUp = 'Charmander');
+const lost = new PokemonList(...object.slice(0,2));
+const found = new PokemonList(...object.slice(2));
+found.add('Verona', 41)
+lost.max();
+lost.move('Bulbasaur', found);
+found.move('Meowt', lost);
+found.showList();

@@ -50,6 +50,9 @@ function seek(a = '', list) {
                     fs.readFile(pok[timer], 'utf-8', (err, data) => {
                         if (err) throw err;
                         let dataT = data.split('|');
+                        fs.writeFile(pok[timer], '', (err) => {
+                            if(err) return console.error(err);
+                        });
                         list.add(dataT[0], +dataT[1]);
                         time.push(timer);
                         callback(null, list, time.length, pok.length);

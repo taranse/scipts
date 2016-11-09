@@ -38,13 +38,11 @@ class Pokemon {
     this.name = name;
     this.level = level;
   }
-  show(name) {
-    if (this.name == name){
-      console.log(`
-        Покемон: ${this.name},
-        Уровень: ${this.level}
-      `);
-    }
+  show() {
+    console.log(`
+Покемон: ${this.name},
+Уровень: ${this.level}
+`);
   }
   set levelUp(name) {
     if (this.name == name)
@@ -64,6 +62,8 @@ const object = list.map(
 
 
 object.map(i => i.levelUp = 'Charmander');
+object[0].show();
+
 const lost = new PokemonList(...object.slice(0,2));
 const found = new PokemonList(...object.slice(2));
 found.add('Verona', 41)

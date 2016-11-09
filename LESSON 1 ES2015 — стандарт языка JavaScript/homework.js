@@ -9,10 +9,10 @@ class PokemonList extends Array{
     move(names, list){
         this.forEach((item, i) => {
             if (item.name == names) {
-            list.push({name: item.name,level:item.level});
-            delete this[i];
-        }
-    });
+                list.push({name: item.name,level:item.level});
+                delete this[i];
+            }
+        });
     }
     showList(){
         let mass = [];
@@ -26,7 +26,6 @@ class PokemonList extends Array{
         console.log(+this)
     }
 }
-
 class Pokemon {
     constructor(...list) {
         let [name, level] = list;

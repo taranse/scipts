@@ -1,18 +1,14 @@
 class Pokemon {
     constructor(...list) {
-    let [name, level, ] = list;
-    this.name = name;
-    this.level = level;
-}
-show(name) {
-    if (this.name == name){
-        console.log(`Покемон: ${this.name},\nУровень: ${this.level}
-          `);
+        let [name, level] = list;
+        this.name = name;
+        this.level = level;
     }
-}
-set levelUp(name) {
-    if (this.name == name)
-        this.level += 1;
-}
+    show() {
+        console.log(`Покемон: ${this.name} - Уровень: ${this.level}`);
+    }
+    set levelUp(level) {
+        this.level += level;
+    }
 }
 module.exports = {Pokemon};

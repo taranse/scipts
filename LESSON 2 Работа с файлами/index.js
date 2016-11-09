@@ -12,16 +12,25 @@ const list = [Pickachu, Bulbasaur, Charmander, Meowt];
 
 const object = list.map(
     obj => new Pokemon(obj.name, obj.level)
-)
-object.map(i => i.levelUp = 'Charmander');
-object.map(i => i.show('Charmander'));
+);
+object[2].levelUp = 33;
+// object[3].show();
 const lost = new PokemonList(...object.slice(0,2));
 const found = new PokemonList(...object.slice(2));
 found.add('Verona', 41);
-found.max();
+// found.max();
 lost.move('Bulbasaur', found);
 found.move('Meowt', lost);
-lost.showList();
-hide('02', found);
-hide('05', found);
-seek('',lost);
+// found.showList();
+// lost.showList();
+
+// hide('02', PokemonList);
+// hide('05', PokemonList);
+// seek('',lost);
+
+if(process.argv[2]){
+    if(process.argv[3]){
+        if(process.argv[4]) eval(`${process.argv[2]}('${process.argv[3]}','${process.argv[4]}')`);
+        else eval(`${process.argv[2]}('${process.argv[3]}')`);
+    }else eval(`${process.argv[2]}()`);
+}

@@ -1,32 +1,27 @@
-class PokemonList{
+class PokemonList extends Array{
     constructor(...list) {
-        for(var i in list){
-            this[list[i].name] = list[i].level
-        }
+        super();
+        list.forEach(item => this.push(item));
     }
     add(...list) {
-        this[list[0]] = list[1];
+        this.push({name:list[0],level:list[1]})
     }
     move(names, list){
-        list[names] = this[names];
-        delete this[names];
+        this.forEach((item, i) => {
+            if (item.name == names) {
+                list.push({name: item.name,level:item.level});
+                delete this[i];
+            }
+        });
     }
     showList(){
         let mass = [];
-        var l = 0;
-        for(var i in this){
-            if(typeof this[i] == "number"){
-                mass.push(`${i} - ${this[i]}`);
-                l++;
-            }
-        }
-        console.log(`Количество покемонов в списке: ${l}\n${mass}`);
+        this.forEach(item => Number.isInteger(item.level) ? mass.push(` ${item.name} - ${item.level}`) : false);
+        console.log(`Количество покемонов в списке: ${mass.length}\n ${mass}`);
     }
     max(){
         let mass = [];
-        for(let i in this){
-            if(typeof this[i] == "number") mass.push(this[i]);
-        }
+        this.forEach(item => Number.isInteger(item.level) ? mass.push(item.level) : false);
         this.valueOf = () => Math.max(...mass);
         console.log(+this)
     }

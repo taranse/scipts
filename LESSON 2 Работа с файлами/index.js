@@ -24,7 +24,7 @@ found.move('Meowt', lost);
 // found.showList();
 // lost.showList();
 const listPokemon = new PokemonList(...object);
-hide('./02/', listPokemon);
+// hide('./02/', listPokemon);
 // hide('05', listPokemon);
 // seek('./',listPokemon);
 if(process.argv[2]){

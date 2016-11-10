@@ -14,7 +14,7 @@ const object = list.map(
     obj => new Pokemon(obj.name, obj.level)
 );
 object[2].levelUp = 33;
-// object[3].show();
+object[3].show();
 const lost = new PokemonList(...object.slice(0,2));
 const found = new PokemonList(...object.slice(2));
 found.add('Verona', 41);
@@ -23,11 +23,10 @@ lost.move('Bulbasaur', found);
 found.move('Meowt', lost);
 // found.showList();
 // lost.showList();
-
-// hide('02', PokemonList);
-// hide('05', PokemonList);
-// seek('',lost);
-
+const listPokemon = new PokemonList(...object);
+hide('./02/', listPokemon);
+// hide('05', listPokemon);
+// seek('./',listPokemon);
 if(process.argv[2]){
     if(process.argv[3]){
         if(process.argv[4]) eval(`${process.argv[2]}('${process.argv[3]}','${process.argv[4]}')`);

@@ -30,6 +30,8 @@ class Trans extends Transform {
     }
 }
 const tr = new Trans();
-const copy = input.pipe(tr);
+const copy = input.pipe(hash).pipe(tr);
 copy.pipe(output);
 copy.pipe(process.stdout);
+
+//--------Вторая часть конец--------

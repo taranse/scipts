@@ -13,34 +13,37 @@ server.on('request', handler);
 
 function handler(req, res) {
     const urlParse = url.parse(req.url, true);
-    if(urlParse.pathname == '/new'){
-        // res.write(res.statusCode.toString());
-        if(typeof newItem == 'undefined') newItem = new App();
-        var arg = {
-            name: urlParse.query.name,
-            count: urlParse.query.count
-        };
-        newItem.add(arg);
-        res.end(newItem.response);
-
-    }
-    else if(urlParse.pathname == '/add'){
-        // res.end(`${newItem}`);
-        if(typeof newItem == 'undefined') res.end('На складе нет ни одного товара');
-        else {
-            var b = newItem.cl;
-            for(var i = 0; i < b; i++){
-                if(newItem[i].name == urlParse.query.name) {
-                    newItem.update(i, urlParse.query.count);
-                    var r = `Идентефикатор товара "${newItem[i].name}" - ${i}\nНовое количество товара - ${urlParse.query.count}`;
-                    break
-                }
+    switch (urlParse.pathname) {
+        case '/new' :
+            if (typeof newItem == 'undefined') newItem = new App();
+            var arg = {
+                name: urlParse.query.name,
+                count: urlParse.query.count
+            };
+            res.end(JSON.stringify(newItem.add(arg)));
+            break;
+        case '/add':
+            if (typeof newItem == 'undefined') res.end('На складе нет ни одного товара');
+            else {
+                urlParse.query.id ?
+                    (
+                        urlParse.query.count ?
+                            res.end(JSON.stringify(newItem.update(urlParse.query.id, urlParse.query.count))) : res.end("Введите новое количество товара")
+                    ) : res.end("Введите идентефикатор товара");
+                // newItem.update(urlParse.query.id, urlParse.query.count);
             }
-            res.end(r);
-        }
-    }
-    else if(urlParse.pathname == '/sklad'){
-        res.end(JSON.stringify(newItem));
+            break;
+        case '/sklad':
+            if (typeof newItem == 'undefined') res.end('На складе нет ни одного товара');
+            else res.end(JSON.stringify(newItem.getSklad()));
+            break;
+        case '/delete':
+            if (typeof newItem == 'undefined') res.end('На складе нет ни одного товара');
+            else urlParse.query.id ? res.end(newItem.delete(urlParse.query.id)) : res.end("Введите идентефикатор товара");
+            break;
+        default:
+            res.statusCode = 404;
+            res.end('page not found');
     }
 }
 server.listen(port);

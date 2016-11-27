@@ -40,7 +40,7 @@ class CLimit extends Transform {
   }
 
   _transform(chunk, encoding, done) {
-      setInterval(() => {
+      setTimeout(() => {
         this.push('transform - ' + chunk.toString())
       }, this.letensy1)
   }

@@ -2,6 +2,7 @@ var PokemonList = require('./pokemonList').PokemonList;
 var Pokemon = require('./pokemon').Pokemon;
 var hide = require('./hidenseek').hide;
 var seek = require('./hidenseek').seek;
+//-------------
 
 var Pickachu = {name: 'Pickachu',level: 13};
 var Bulbasaur = {name: 'Bulbasaur',level: 21};
@@ -27,6 +28,7 @@ const listPokemon = new PokemonList(...object);
 // hide('./02/', listPokemon);
 // hide('05', listPokemon);
 // seek('./',listPokemon);
+
 if(process.argv[2]){
     if(process.argv[3]){
         if(process.argv[4]) eval(`${process.argv[2]}('${process.argv[3]}','${process.argv[4]}')`);

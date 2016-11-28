@@ -2,17 +2,17 @@ const express = require("express");
 let app = module.exports = express();
 //----------------------------------
 
+var heandler = {
+    create: (data) => {
+        if(data.name == '' || data.score == '' || typeof data.name == 'undefined' || typeof data.score == 'undefined')
+            return 'Error';
+        else return users.create(data);
+    },
+    read: (data) => users.read(data),
+    update: (data) => users.update(data),
+    deleate: (data) => {}
+};
 app.get('/:method', (req, res) => {
     let method = req.params.method;
-   switch (method) {
-       case 'create':
-           res.send(users.create(req.query));
-           break;
-       case 'read':
-           break;
-       case 'update':
-           break;
-       case 'deleate':
-           break;
-   }
+    res.send(heandler[method](req.query));
 });

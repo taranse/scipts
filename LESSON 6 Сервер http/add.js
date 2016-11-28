@@ -4,7 +4,7 @@ module.exports = class Sklad extends Array{
         this.push('');
     }
     add(arg){
-        var sw = true, r;
+        let sw = true, r;
         this.forEach((val, i) => {
             if(val.name == arg.name) sw = false;
         });
@@ -23,7 +23,7 @@ module.exports = class Sklad extends Array{
         return this.length;
     }
     getSklad(){
-        var r = new Array();
+        let r = new Array();
         this.forEach((val, i) => {
             if(typeof val.name != 'undefined') r.push({id: i, name: val.name, count: val.count});
         });
@@ -31,7 +31,7 @@ module.exports = class Sklad extends Array{
         return r;
     }
     delete(id){
-        var r = typeof this[id] == 'undefined' ? 'Товара с идентификатором ' + id + ' не существует' : JSON.stringify(this[id]);
+        let r = typeof this[id] == 'undefined' ? 'Товара с идентификатором ' + id + ' не существует' : JSON.stringify(this[id]);
         delete this[id];
         return r;
     }

@@ -13,7 +13,11 @@ server.on('request', handler);
 
 function handler(req, res) {
     const urlParse = url.parse(req.url, true);
+    res.setHeader('Content-Type','text/html; charset=utf-8')
     switch (urlParse.pathname) {
+        case '/' :
+            res.end('Список команд: /new?name=name&count=count, /add?id=id&count=count, /delete?id=id, /sklad')
+            break;
         case '/new' :
             if (typeof newItem == 'undefined') newItem = new App();
             var arg = {

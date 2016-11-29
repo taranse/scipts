@@ -10,7 +10,7 @@ var heandler = {
     },
     read: (data) => users.read(data),
     update: (data) => users.update(data),
-    deleate: (data) => users.deleate(data)
+    delete: (data) => users.del(data)
 };
 app.get('/:method', (req, res) => {
     let method = req.params.method;

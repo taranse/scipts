@@ -48,7 +48,25 @@ module.exports = class Users extends Array{
                 : newMass = 'Не указан параметр запроса';
         return newMass;
     }
-    deleate(arg){
-
+    del(arg){
+        var newMass = false;
+        var name, score, id;
+        this.forEach(value =>  {value.name == arg.name ? name = true : name = false});
+        this.forEach(value =>  {value.score == arg.score ? score = true : score = false});
+        this.forEach((value, number) =>  {number == arg.id ? id = true : id = false});
+        arg.name ? //Есть ли параметр имя
+            name ? //Есть ли имя в базе данных
+                this.forEach((value, number) => {value.name == arg.name ? delete this[number] : false;})
+                : newMass = 'Данного имени нету в базе данных'
+            : arg.score ? //Есть ли параметр score
+                score ? //Есть ли данный score в базе данных
+                    this.forEach((value, number) => {value.score == arg.score ? delete this[number] : false;})
+                    : newMass = 'Объекта с данным значением score нету в базе данных'
+                : arg.id ?
+                    id ?
+                        delete this[arg.id]
+                        : newMass = 'Пользователь с данным id не найден'
+            : newMass = 'Не указан параметр запроса';
+        return newMass ? newMass : 'Пользователь удален';
     }
 }

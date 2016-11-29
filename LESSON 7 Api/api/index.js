@@ -6,4 +6,4 @@ let rest = require('./rest');
 let rpc = require('./rpc');
 
 app.use('/api/v1', rest);
-app.use('/rpc', rpc);
+app.use('/', rpc);

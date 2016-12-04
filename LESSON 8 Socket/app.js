@@ -1,9 +1,1 @@
-var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-app.get('/', function(req, res){
-    res.sendfile('index.html');
-});
-io.on('connection', function(socket) {
-    console.log('a user connected');
-});
+http://shomel.org/%D0%BF%D0%B8%D1%88%D0%B5%D0%BC-%D0%BF%D1%80%D0%BE%D1%81%D1%82%D0%BE%D0%B9-%D1%87%D0%B0%D1%82-%D1%81-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D1%8C%D1%8E-websockets-%D0%B8-nodejs/

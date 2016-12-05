@@ -1,4 +1,6 @@
-var socket = io.connect('http://localhost:' + 80);
+var port = 80; // Указываем порт на котором у на стоит сокет
+var socket = io.connect('http://localhost:' + port); // Тут мы объявляем "socket" (дальше мы будем с ним работать) и подключаемся сразу к серверу через порт
+
 socket.on('userName', function(userName){ // Создаем прослушку 'userName' и принимаем переменную name в виде аргумента 'userName'
     console.log('You\'r username is => ' + userName); // Логгирование в консоль браузера
     $('textarea').val($('textarea').val() + 'You\'r username => ' + userName + '\n'); // Выводим в поле для текста оповещение для подключенного с его ником
@@ -12,20 +14,6 @@ $(document).on('click', 'button', function(){ // Прослушка кнопки
     var message = $('input').val(); // Все что в поле для ввода записываем в переменную
     socket.emit('message', message); // Отправляем событие 'message' на сервер c самим текстом (message)- как переменная
     $('input').val(null); // Заполняем поле для ввода 'пустотой'
-});
-io.on('connection', function (socket) {
-    var name = 'U' + (socket.id).toString().substr(1,4);
-    socket.broadcast.emit('newUser', name);
-
-    logger.info(name + ' connected to chat!');
-    socket.emit('userName', name);
-    // Обработчик ниже // Мы его сделали внутри коннекта
-    socket.on('message', function(msg){ // Обработчик на событие 'message' и аргументом (msg) из переменной message
-        logger.warn('-----------'); // Logging
-        logger.warn('User: ' + name + ' | Message: ' + msg);
-        logger.warn('====> Sending message to other chaters...');
-        io.sockets.emit('messageToClients', msg, name); // Отправляем всем сокетам событие 'messageToClients' и отправляем туда же два аргумента (текст, имя юзера)
-    });
 });
 socket.on('messageToClients', function(msg, name){
     console.log(name + ' | => ' + msg); // Логгирование в консоль браузера

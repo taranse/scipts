@@ -9,15 +9,15 @@ const logger = log4js.getLogger();
 server.listen(port);
 
 logger.debug('Script has been started...');
-logger.debug(process.env);
 app.use(express.static(__dirname + '/public'));
 
 io.on('connection', function (socket) {
     socket.on('userName', function(data){
-        socket.broadcast.emit('newUser', data);
-        logger.info(data + ' connected to chat!');
+        socket.join(data.room);
+        socket.broadcast.to(data.room).emit('newUser', data.name);
+        logger.info(data.name + ' connected to chat!');
         socket.on('message', function(msg){
-            io.sockets.emit('messageToClients', msg, data);
+            io.to(data.room).emit('messageToClients', msg, data.name);
         });
     });
 

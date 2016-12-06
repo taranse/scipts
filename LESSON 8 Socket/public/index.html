@@ -26,10 +26,16 @@
         var port = 80; // Указываем порт на котором у на стоит сокет
         var socket = io.connect('http://localhost:' + port);
         $(document).on('click', 'button[name=name]', function () {
-            var name = $('input[name=name]').val();
+            var room = $('select').val();
+            console.log(room);
+            var data = {
+                name: $('input[name=name]').val(),
+                room: room
+            };
             $('head').append('<script src="main.js" charset="utf-8"></scr'+'ipt>');
-            socket.emit('userName', name);
-            $('div.chat').append(`<i>Вы вошли в чат под именем <span>${name}</span></i><br/>`);
+            socket.emit('userName', data);
+            $('div.chat').append(`<h2>${$('option[value='+ data.room +']').html()}</h2>`);
+            $('div.chat').append(`<i>Вы вошли в чат под именем <span>${data.name}</span></i><br/>`);
             $('.enter-name').hide();
             $('input.chat, button.chat').prop('disabled', false);
         });
@@ -41,7 +47,11 @@
 <br/>
 <div class="enter-name">
     <h2>Введите имя что бы войти в чат</h2>
-
+    <select name="room">
+        <option value="main">Общая комната</option>
+        <option value="room1">Комната 1</option>
+        <option value="room2">Комната 2</option>
+    </select>
     <input type="text" name="name"/>
     <button type="button" name="name">Отправить</button>
 </div>

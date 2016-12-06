@@ -9,5 +9,5 @@ $(document).on('click', 'button.chat', function(){
     $('input').val(null);
 });
 socket.on('messageToClients', function(msg, name){
-    $('div.chat').append(`<b>${name}</b>:  <span class="message">${msg}</span><br/>`);
+    $('div.chat').append(`<b>${name}</b>: <span class="message">${msg}</span><br/>`);
 });

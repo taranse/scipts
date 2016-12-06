@@ -4,13 +4,52 @@
     <title>chat</title>
     <script src="socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" charset="utf-8"></script>
-    <script src="main.js" charset="utf-8"></script>
+
     <!-- Здесь можете подключить ваш main.css -->
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        html{ position: relative}
+        body{
+            padding: 20px;
+        }
+        input.chat {position: absolute;bottom: 0; width: 80%;height: 90px;font-size: 30px;border: 5px solid black;padding: 10px;left: 0}
+        button.chat {position: absolute;bottom: 0; width: 20%;height: 90px;font-size: 30px;border: 5px solid black;padding: 10px;right: 0}
+        div.chat {padding: 30px;}
+        i span {font-size: 20px;color: blueviolet}
+        b{font-size: 22px;color: firebrick}
+        .message{font-size: 20px;color: darkslategray}
+    </style>
+    <script>
+        var port = 80; // Указываем порт на котором у на стоит сокет
+        var socket = io.connect('http://localhost:' + port);
+        $(document).on('click', 'button[name=name]', function () {
+            var name = $('input[name=name]').val();
+            $('head').append('<script src="main.js" charset="utf-8"></scr'+'ipt>');
+            socket.emit('userName', name);
+            $('div.chat').append(`<i>Вы вошли в чат под именем <span>${name}</span></i><br/>`);
+            $('.enter-name').hide();
+            $('input.chat, button.chat').prop('disabled', false);
+        });
+
+    </script>
 </head>
 <body>
-<textarea name="name" rows="8" cols="40"></textarea>
+<h1>Чат за пол часа</h1>
+<br/>
+<div class="enter-name">
+    <h2>Введите имя что бы войти в чат</h2>
+
+    <input type="text" name="name"/>
+    <button type="button" name="name">Отправить</button>
+</div>
+<div class="chat">
+
+</div>
 <p></p>
-<input type="text" name="text" size="20">
-<button type="button" name="button">Отправить</button>
+<input class="chat" disabled type="text" name="text" size="20"/>
+<button class="chat" disabled type="button" name="button">Отправить</button>
 </body>
 </html>

@@ -8,21 +8,22 @@ const logger = log4js.getLogger();
 
 server.listen(port);
 
-logger.debug('Script has been started...'); // Логгируем.
+logger.debug('Script has been started...');
+logger.debug(process.env);
 app.use(express.static(__dirname + '/public'));
 
 io.on('connection', function (socket) {
-    var name = 'U' + (socket.id).toString().substr(1,4);
-    socket.broadcast.emit('newUser', name);
-
-    logger.info(name + ' connected to chat!');
-    socket.emit('userName', name);
-    // Обработчик ниже // Мы его сделали внутри коннекта
-
-    socket.on('message', function(msg){ // Обработчик на событие 'message' и аргументом (msg) из переменной message
-        logger.warn('-----------'); // Logging
-        logger.warn('User: ' + name + ' | Message: ' + msg);
-        logger.warn('====> Sending message to other chaters...');
-        io.sockets.emit('messageToClients', msg, name); // Отправляем всем сокетам событие 'messageToClients' и отправляем туда же два аргумента (текст, имя юзера)
+    socket.on('userName', function(data){
+        socket.broadcast.emit('newUser', data);
+        logger.info(data + ' connected to chat!');
+        socket.on('message', function(msg){
+            io.sockets.emit('messageToClients', msg, data);
+        });
     });
+
+
 });
+io.on('disconnection', function (socket) {
+    console.log(socket);
+
+})

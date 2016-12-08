@@ -1,0 +1,41 @@
+mixin book(book)
+    tr
+        td= book.name
+        td= book.phone
+        td
+            ul
+                for param in book.params
+                    li
+                        b= param
+                        = book.params[param]
+
+doctype html
+html(lang="ru")
+    head
+        title= pageTitle
+        link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css")
+        style.
+            body{padding: 30px}
+            .clear{clear:both}
+    body
+        h4 Добавить в записную книжку
+        form(role="form", method='post').col-sm-3
+            input(type='text', name='name', required).form-control
+            br
+            input(type='tel', name='phone', required).form-control
+            br
+            input(type='submit').btn.btn-primary
+        div.clear
+        br
+        br
+        h3 Записная книжка
+        table.table.table-bordered
+            tr.active
+                th Имя
+                th Телефон
+                th Дополнительные параметры
+            tr
+                td 123
+                td 234
+                td
+                    ul

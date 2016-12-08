@@ -39,6 +39,6 @@ dbclient.connect(urlDb, (err, db) => {
                 collection.remove();
             }
         });
-        
+        db.close();
     }
 });

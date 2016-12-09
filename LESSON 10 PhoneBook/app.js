@@ -14,30 +14,36 @@ server.listen(port);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({"extended": true}));
 
-app.post('/',(req,res, next) => {
-    var body = req.body;
-    var collection = db.collection('phones');
-    collection.find({name: body.name, phone: body.phone}).toArray((err, result) => { //Возраст меньше либо равно 17
-        if(err) console.log(err);
-        else if(result.length) console.log("Найден документ", result);
-        else console.log('Документов не найдено');
-    });
-    res.end(next());
+app.post('/api',(req,res, next) => {
+    let body = req.body;
+    if(!isNaN(+body.name)){
+        next('error');
+    }else {
+        dbclient.connect(urlDb, (err, db) => {
+            if (err) console.log(err);
+            else {
+                let collection = db.collection('phone_book');
+                collection.insert({name: body.name, phone: body.phone}, (err, result) => { //Возраст меньше либо равно 17
+                    if (err) console.log(err);
+                    res.writeHead(302, {'Location': '/'});
+                    res.end();
+                });
+            }
+        });
+    }
 });
 app.use('/', (req, res, next) => {
     dbclient.connect(urlDb, (err, db) => {
         if (err) console.log(err);
         else {
+            let collection = db.collection('phone_book');
             console.log('Соединение установлено с адресом ', urlDb);
-            var collection = db.collection('phones');
-            collection.find().toArray((err, result) => { //Возраст меньше либо равно 17
+            collection.find({}).toArray((err, result) => { //Возраст меньше либо равно 17
                 if(err) console.log(err);
-                else if(result.length) console.log("Найден документ", result);
-                else console.log('Документов не найдено');
+                res.end(jade.renderFile('index.jade', {result: result}));
             });
         }
     });
-    res.send(jade.renderFile('index.jade'));
 });
 app.use(function (err, req, res, next) {
     console.log(err.stack);

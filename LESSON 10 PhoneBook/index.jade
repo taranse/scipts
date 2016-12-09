@@ -1,13 +1,14 @@
-mixin book(book)
-    tr
-        td= book.name
-        td= book.phone
-        td
-            ul
-                for param in book.params
+mixin book()
+    - for (var d of result)
+        tr
+            td= d.name
+            td= d.phone
+            td
+                ul
                     li
-                        b= param
-                        = book.params[param]
+                        b skype:
+                        |  simplesten
+
 
 doctype html
 html(lang="ru")
@@ -17,12 +18,28 @@ html(lang="ru")
         style.
             body{padding: 30px}
             .clear{clear:both}
+            span.input-group-addon{font-size: 20px;color:red;}
     body
         h4 Добавить в записную книжку
-        form(role="form", method='post').col-sm-3
-            input(type='text', name='name', required).form-control
+        form(role="form", method='post' action='api').col-sm-4
+            label Имя
+            .input-group
+                span.input-group-addon ✩
+                input(type='text', name='name', required).form-control
+            hr
+            label Телефон
+            .input-group
+                span.input-group-addon ✩
+                input(type='tel', name='phone', required).form-control
+            hr
+            label Дополнительные параметры
+            select(name='attr').form-control
+                option(selected, disabled) Не выбрано
+                option(value='skype') skype
+                option(value='vk') vk
+                option(value='facebook') facebook
             br
-            input(type='tel', name='phone', required).form-control
+            input(name='attrVal', type='text',disabled).form-control
             br
             input(type='submit').btn.btn-primary
         div.clear
@@ -34,8 +51,5 @@ html(lang="ru")
                 th Имя
                 th Телефон
                 th Дополнительные параметры
-            tr
-                td 123
-                td 234
-                td
-                    ul
+            +book()
+

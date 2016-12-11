@@ -88,14 +88,12 @@ document.addEventListener('DOMContentLoaded', function(){
                 if (val.value.indexOf(e.target.value) + 1) {
                     button = true;
                 }
-            }else if(i + 1 < list.length && list[i + 1].offsetParent != null && list[i].offsetParent.parentElement != list[i + 1].offsetParent.parentElement){
+            }else if((i + 1 < list.length && list[i + 1].offsetParent != null && list[i].offsetParent.parentElement != list[i + 1].offsetParent.parentElement) || i + 1 == list.length){
                 if (val.value.indexOf(e.target.value) + 1) {
                     button = true;
                 }
                 if (!button) list[i].offsetParent.parentElement.style.display = 'none';
                 button = false;
-            }else{
-                if (!button) list[i].offsetParent.parentElement.style.display = 'none';
             }
 
             // else parent.style.display = 'table-row';

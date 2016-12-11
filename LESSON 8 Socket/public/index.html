@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <title>chat</title>
-    <script src="socket.io.js"></script>
+    <script src="socket.io.js" type="application/javascript"></script>
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" charset="utf-8"></script>
 
     <!-- Здесь можете подключить ваш main.css -->
@@ -21,11 +21,14 @@
         i span {font-size: 20px;color: blueviolet}
         b{font-size: 22px;color: firebrick}
         .message{font-size: 20px;color: darkslategray}
+
     </style>
     <script>
         var port = 80; // Указываем порт на котором у на стоит сокет
         var socket = io.connect('http://localhost:' + port);
+
         $(document).on('click', 'button[name=name]', function () {
+            console.log($('input'));
             var room = $('select').val();
             console.log(room);
             var data = {

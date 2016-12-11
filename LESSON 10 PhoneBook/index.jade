@@ -1,24 +1,37 @@
 mixin book()
     - for (var d of result)
         tr
-            td= d.name
-            td= d.phone
+            td.read
+                button.btn.btn-default.col-xs-5.update: span.glyphicon.glyphicon-pencil
+                button.btn.btn-danger.col-xs-5(onclick='window.location= "/api/delete/#{d.phone}"').deleate: span.glyphicon.glyphicon-trash
+            td.has-success: input(value= d.name, disabled=true).form-control.change
+            td.has-success: input(value= d.phone, disabled=true).form-control.change
             td
-                ul
-                    li
-                        b skype:
-                        |  simplesten
-
-
+                ul.attr
+                    - if(d.attr && Object.keys(d.attr).length)
+                        - for(var b in d.attr)
+                            li.flex.has-success
+                                b= b
+                                input(value=  d.attr[b], disabled=true).form-control.change
 doctype html
 html(lang="ru")
     head
         title= pageTitle
         link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css")
+        script(src="main.js", charset="utf-8", defer)
         style.
+            td.read button{margin: 4%}
             body{padding: 30px}
             .clear{clear:both}
-            span.input-group-addon{font-size: 20px;color:red;}
+            span.input-group-addon{font-size: 20px;color:red;line-height: 0;}
+            span.danger{color: #d9534f}
+            td input.form-control[disabled] {border-color: transparent;background-color: #fff;box-shadow: none;cursor: default;}
+            ul{margin: 0; padding: 0;}
+            li.flex {display: flex;align-items: center;justify-content: space-between}
+            li.flex b {width: 20%}
+            button {z-index: 1;}
+            button span {z-index: -1;}
+            tr {position: relative}
     body
         h4 Добавить в записную книжку
         form(role="form", method='post' action='api').col-sm-4
@@ -26,30 +39,44 @@ html(lang="ru")
             .input-group
                 span.input-group-addon ✩
                 input(type='text', name='name', required).form-control
+            span.danger= error.name
             hr
             label Телефон
             .input-group
                 span.input-group-addon ✩
                 input(type='tel', name='phone', required).form-control
+            span.danger= error.phone
             hr
             label Дополнительные параметры
-            select(name='attr').form-control
+            script.
+                function attr() {
+                    console.log(123);
+                }
+            select(name='attr', onchange='document.querySelector(".input-attr").disabled = false').form-control
                 option(selected, disabled) Не выбрано
                 option(value='skype') skype
                 option(value='vk') vk
                 option(value='facebook') facebook
+                option(value='email') email
+
             br
-            input(name='attrVal', type='text',disabled).form-control
+            input(name='attrVal', type='text',disabled).form-control.input-attr
             br
             input(type='submit').btn.btn-primary
         div.clear
         br
         br
         h3 Записная книжка
+        label Поиск
+        .input-group.col-xs-4
+            span.input-group-addon: span.glyphicon.glyphicon-search
+            input.form-control.input-search
+
+        br
         table.table.table-bordered
             tr.active
+                th Редактировать
                 th Имя
                 th Телефон
-                th Дополнительные параметры
+                th Дополнительная информация
             +book()
-

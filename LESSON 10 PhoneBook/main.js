@@ -100,3 +100,6 @@ document.addEventListener('DOMContentLoaded', function(){
         });
     })
 });
+window.onerror = function() {
+    alert("Error caught");
+};

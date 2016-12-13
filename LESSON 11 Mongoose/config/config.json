@@ -1,4 +1,14 @@
 {
-  "port": 80
+  "port": 80,
+  "mongoose": {
+    "uri": "mongodb://127.0.0.1:27017/bitrix",
+    "options": {
+      "server": {
+        "socketOptions": {
+          "keepAlive": 1
+        }
+      }
+    }
+  }
 
 }

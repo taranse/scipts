@@ -3,12 +3,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const config = require('config');
-const log4js = require('log4js');
+const logger = require('log4js').getLogger();
 
-log4js.loadAppender('file');
-//log4js.addAppender(log4js.appenders.console());
-log4js.addAppender(log4js.appenders.file('logs/log.log'), 'cheese');
-const logger = log4js.getLogger();
 
 let index = require('./routes/index');
 let users = require('./routes/users');
@@ -23,9 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', function (req,res) {
-
-});
+app.get('/', index);
 app.use('/login', users);
 
 // catch 404 and forward to error handler

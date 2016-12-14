@@ -1,10 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const User = require('models/user').User;
 
 router.get('/', function(req, res, next) {
-  res.render('login', { title: 'Авторизация' });
 });
 router.post('/enter', function (req, res, next) {
-  res.end(req.body.username);
+  let username = req.body.username;
+  let password = req.body.username;
+  // res.json(req.body);
+
 });
 module.exports = router;

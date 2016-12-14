@@ -21,5 +21,5 @@ module.exports = connect
         test1.save((err) => {if(err) throw new Error('Невозможно сохранить пользователя')}),
         test2.save((err) => {if(err) throw new Error('Невозможно сохранить пользователя')})
     ]))
-    .then(() => mongoose.disconnect())
-    .catch(rej => console.log(rej));
+    // .then(() => mongoose.disconnect())
+    .catch(rej => logger.warn(rej));

@@ -4,8 +4,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const config = require('config');
 const logger = require('log4js').getLogger();
-
-
 let index = require('./routes/index');
 let users = require('./routes/users');
 
@@ -39,5 +37,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+//Создание пользователей в базе
+require('./createDb');
 logger.info('Server running on port: ' + config.get('port'));
 module.exports = app;

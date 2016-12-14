@@ -16,6 +16,10 @@ const schema = new Schema({
     },
     taskList: {
         type: Schema.Types.ObjectId,
+    },
+    usertype: {
+        type: Number,
+        default: 2
     }
 });
 schema.methods.encryptPassword = password => crypto.createHash('md5', this.salt).update(password).digest('hex');

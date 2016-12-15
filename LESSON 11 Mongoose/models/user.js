@@ -15,7 +15,7 @@ const schema = new Schema({
         required: true
     },
     taskList: {
-        type: Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId
     },
     usertype: {
         type: Number,

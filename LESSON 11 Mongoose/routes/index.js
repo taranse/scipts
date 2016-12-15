@@ -1,10 +1,14 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const User = require('models/user').User;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  "use strict";
-  res.end('123');
+  User.findById(req.session.user, function (err, user) {
+      res.render('index', {
+          userId: user
+      })
+  })
 });
 
 module.exports = router;

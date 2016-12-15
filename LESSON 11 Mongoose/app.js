@@ -29,10 +29,10 @@ app.use(session({
   cookie: config.get('session:cookie'),
   store: new MongoStore({mongooseConnection: mongoose.connection})
 }));
-app.use(function (req, res, next) {
-    req.session.numberOfVisit = req.session.numberOfVisit + 1 || 1;
-    res.send('Visit: ' + req.session.numberOfVisit);
-});
+// app.use(function (req, res, next) {
+//     req.session.numberOfVisit = req.session.numberOfVisit + 1 || 1;
+//     res.send('Visit: ' + req.session.numberOfVisit);
+// });
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/login', users);

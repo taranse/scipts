@@ -1,11 +1,14 @@
 extends layout
 mixin listUsers()
   option Выбрать пользователя
-  -for (var user of users)
-    -if(user.username != 'Admin')
-      option= user.username
+  -for (var user in resolve.users)
+    -if(resolve.users[user].username != 'Admin')
+      option= resolve.users[user].username
 
 block content
+  script.
+    var __lay = !{JSON.stringify(resolve)}
+    console.log(__lay);
   - //if(user.username == 'Admin')
     .createTask.col-sm-6
       h2 Создать задачу для пользователя
@@ -27,4 +30,8 @@ block content
         br
   .col-xs-12
     h3 Список задач
-
+    -if(!resolve.task.length)
+      p Список задач пуст
+    -else
+      ul
+        li 123

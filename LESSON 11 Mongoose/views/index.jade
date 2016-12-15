@@ -1,6 +1,30 @@
 extends layout
+mixin listUsers()
+  option Выбрать пользователя
+  -for (var user of users)
+    -if(user.username != 'Admin')
+      option= user.username
 
 block content
-  h1= title
-  p Welcome to chat #{userId.username}
+  - //if(user.username == 'Admin')
+    .createTask.col-sm-6
+      h2 Создать задачу для пользователя
+      form.form
+        input.form-control(name="name", required, placeholder="Имя задачи")
+        br
+        textarea.form-control(name="text", required, placeholder="Описание задачи")
+        br
+        .form-group
+          label Выберете ответсвенного
+          select.form-control
+            +listUsers()
+    .createUser.col-sm-6
+      h2 Создать пользователя
+      form.form
+        input.form-control(name="username", required, placeholder="Имя пользователя")
+        br
+        input.form-control(name="password", required, placeholder="Пароль")
+        br
+  .col-xs-12
+    h3 Список задач
 

@@ -1,26 +1,39 @@
 extends layout
-mixin listUsers()
+mixin selectUsers()
   option Выбрать пользователя
-  -for (var user in resolve.users)
-    -if(resolve.users[user].username != 'Admin')
-      option= resolve.users[user].username
-
+  -for (var user of resolve.users)
+    -if(user.username != 'Admin')
+      option= user.username
+mixin listTask()
+  -for (var task of resolve.task)
+    -if(task.username == resolve.user.username || resolve.user.usertype == 1)
+      li= task.taskname
+mixin listUsers()
+  ul
+    -for (var userOnce of resolve.users)
+      -if(userOnce.username != resolve.user.username)
+        li= userOnce.username
 block content
+  form.form(method='post', action='/exit')
+    input(type="hidden", value="#{resolve.user._id}")
+    button.btn Выйти
   script.
     var __lay = !{JSON.stringify(resolve)}
     console.log(__lay);
-  - //if(user.username == 'Admin')
+  - if(resolve.user.username == 'Admin')
     .createTask.col-sm-6
       h2 Создать задачу для пользователя
-      form.form
+      form.form(method='post', action='/api/create/task')
         input.form-control(name="name", required, placeholder="Имя задачи")
         br
         textarea.form-control(name="text", required, placeholder="Описание задачи")
+        input(type="hidden", name="admin", value="#{resolve.user.username}")
         br
         .form-group
           label Выберете ответсвенного
-          select.form-control
-            +listUsers()
+          select.form-control(name="usertask")
+            +selectUsers()
+        input(type="submit", value="ok")
     .createUser.col-sm-6
       h2 Создать пользователя
       form.form
@@ -28,10 +41,11 @@ block content
         br
         input.form-control(name="password", required, placeholder="Пароль")
         br
+      +listUsers()
   .col-xs-12
     h3 Список задач
     -if(!resolve.task.length)
       p Список задач пуст
     -else
       ul
-        li 123
+        +listTask()

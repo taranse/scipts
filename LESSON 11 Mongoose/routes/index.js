@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const User = require('models/user').User;
 const Task = require('models/task').Task;
-const obj = {};
 let getUsers = new Promise((resolve, reject) => {
     User.find({}, function(err, users) {
         resolve(users);
@@ -10,31 +9,42 @@ let getUsers = new Promise((resolve, reject) => {
 })
 /* GET home page. */
 router.get('/', function(req, res, next) {
+    const obj = {};
     getUsers
-        .then(users => {
-            User.findById(req.session.user, function (err, user) {
-                if(err) reject(err);
-                if(!user) {
-                    obj.user = user;
-                    obj.users = users;
-                }
-                else res.redirect('/login');
-            });
-            return obj;
+        .then(function(users) {
+           return new Promise((resolve, reject) => {
+               User.findById(req.session.user, function (err, user) {
+                   if(err) reject(err);
+                   if(user) {
+                       obj.user = user;
+                       obj.users = users;
+                       resolve(obj);
+                   }
+                   // else console.log(123);
+                   else res.redirect('/login');
+               });
+           })
         })
         .then(obj => {
-            Task.find({}, function (err, task) {
-                if(err) throw err;
-                obj.task = task;
+            return new Promise((resolve, reject) => {
+                Task.find({}, function (err, task) {
+                    if(err) reject(err);
+                    obj.task = task;
+                    resolve(obj);
+                });
             });
-            return obj;
         })
         .then(obj => {
+            // res.json(obj)
             res.render('index', {resolve: obj});
         })
         .catch(function (resolve) {
             next(resolve);
         })
+});
+router.post('/exit', function (req, res) {
+
+    res.redirect('/login');
 });
 
 module.exports = router;

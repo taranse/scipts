@@ -11,6 +11,7 @@ const favicon = require('serve-favicon');
 //---------------------------------------------------
 let index = require('./routes/index');
 let users = require('./routes/users');
+let api = require('./routes/postApi');
 
 require('./createDb');
 
@@ -36,6 +37,7 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/login', users);
+app.use('/api', api);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   let err = new Error('Not Found');

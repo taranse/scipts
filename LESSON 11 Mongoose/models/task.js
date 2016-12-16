@@ -8,9 +8,20 @@ const schema = new Schema({
         type: Schema.Types.Mixed,
         required: true
     },
+    admin: {
+        type: String,
+        default: "Admin"
+    },
     username: {
-        type: Schema.Types.ObjectId,
+        type: String,
         required: true
+    },
+    dateStart: {
+        type: Date,
+        default: Date.now
+    },
+    dateFinish: {
+        type: Date
     }
 });
 exports.Task = mongoose.model('Task', schema);

@@ -17,3 +17,19 @@ a {
 input{
   width: 100%;
 }
+.list-head{
+  font-size: 17px;
+  font-weight: 600;
+}
+ul.list{
+  list-style: none;
+  padding: 0;
+}
+ul.list li:nth-child(1){
+  background-color: #f9f9f9;
+}
+ul.list li{
+  display: flex;
+  padding: 10px;
+  margin: 10px 0;
+}

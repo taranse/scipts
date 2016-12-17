@@ -8,7 +8,8 @@ router.post('/create/task', function (req, res, next) {
     let task = new Task({
         taskname: body.name,
         text: body.text,
-        username: body.usertask
+        username: body.usertask,
+        dateFinish: body.finish
     });
     task.save((err, task) => {
         User.findOne({username: task.username}, (err, user) => {

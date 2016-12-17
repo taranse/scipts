@@ -5,11 +5,24 @@ mixin selectUsers()
     -if(user.username != 'Admin')
       option= user.username
 mixin listTask()
+  li
+    .col-xs-12.list-head
+      .col-xs-2 Задача
+      .col-xs-4 Описание
+      .col-xs-2 Начало
+      .col-xs-2 Окончание
+      .col-xs-2 Ответственный
   -for (var task of resolve.task)
     -if(task.username == resolve.user.username || resolve.user.usertype == 1)
-      li= task.taskname
+      li(data-toggle="collapse", data-target="##{task._id}")
+        .col-xs-12.list-item
+          .col-xs-2= task.taskname
+          .col-xs-4= task.text
+          .col-xs-2= `${task.dateStart.getDate()}.${task.dateStart.getMonth() + 1}.${task.dateStart.getFullYear()}`
+          .col-xs-2= `${task.dateFinish.getDate()}.${task.dateFinish.getMonth() + 1}.${task.dateFinish.getFullYear()}`
+          .col-xs-2= task.username
 mixin listUsers()
-  ul
+  ol
     -for (var userOnce of resolve.users)
       -if(userOnce.username != resolve.user.username)
         li= userOnce.username
@@ -33,7 +46,10 @@ block content
           label Выберете ответсвенного
           select.form-control(name="usertask")
             +selectUsers()
-        input(type="submit", value="ok")
+        input(type="date", name="finish" required="true").form-control.col-xs-3
+        br
+        br
+        input(type="submit", value="Создать").btn.btn-primary.col-xs-2
     .createUser.col-sm-6
       h2 Создать пользователя
       form.form
@@ -47,5 +63,5 @@ block content
     -if(!resolve.task.length)
       p Список задач пуст
     -else
-      ul
+      ul.list
         +listTask()

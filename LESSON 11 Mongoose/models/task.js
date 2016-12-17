@@ -21,6 +21,10 @@ const schema = new Schema({
         default: Date.now
     },
     dateFinish: {
+        type: Date,
+        required: true
+    },
+    dataClose: {
         type: Date
     }
 });

@@ -1,0 +1,14 @@
+<div ng-if="!berriesLoaded">
+    <span class="glyphicon glyphicon-refresh"></span>
+    Loading...
+</div>
+
+<div class="alert alert-danger" role="alert" ng-if="notfoundError">Ягода не найдена</div>
+
+<div class="media" ng-if="berriesLoaded">
+    <div class="media-body">
+
+        <h1 class="media-heading">{{berrie.name | uppercase }}</h1>
+
+    </div>
+</div>

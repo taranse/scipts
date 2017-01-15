@@ -13,6 +13,7 @@
         <p>Вес:
             {{$ctrl.pokemon.weight}}, рост:
             {{$ctrl.pokemon.height}}</p>
+        <span id="pokemon_id">{{$ctrl.pokemon.objectId}}</span>
 
     </uib-tab>
 
@@ -22,7 +23,7 @@
             <span class="glyphicon glyphicon-trash"></span>
             Удалить
         </button>
-        <a class="btn btn-primary" href="#!/edit/{{$ctrl.pokemon.objectId}}">
+        <a class="btn btn-primary" id="update_link" href="#!/edit/{{$ctrl.pokemon.objectId}}">
             Редактировать
         </a>
 

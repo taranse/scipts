@@ -13,7 +13,7 @@ pokemonApp.controller('CreatePokemonCtrl', function($scope, PokemonsService, $md
 
             $mdToast.show(
                 $mdToast.simple()
-                .textContent('Привет, покемон ' + successResult.objectId)
+                .textContent(successResult.objectId)
                 .position('bottom right')
                 .hideDelay(3000)
             );

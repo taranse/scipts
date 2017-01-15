@@ -1,6 +1,6 @@
 <md-list>
 	<md-subheader class="md-no-sticky">Список покемонов</md-subheader>
-	   <md-list-item class="secondary-button-padding" ng-repeat="singlePokemon in $ctrl.pokemons" ng-click="$ctrl.navigateTo(singlePokemon.objectId)">
+	   <md-list-item ng-model="repeat-md-list-item" class="secondary-button-padding" ng-repeat="singlePokemon in $ctrl.pokemons" ng-click="$ctrl.navigateTo(singlePokemon.objectId)">
 		 <pokemon-list-item pokemon="singlePokemon"></pokemon-list-item>
 	  </md-list-item>
    

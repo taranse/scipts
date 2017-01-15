@@ -9,8 +9,7 @@
 
 </style>
 
-<div class="alert alert-success" role="alert" ng-if="updateSuccess">Покемон {{pokemon.objectId}} обновился!</div>
-
+<div class="alert alert-success" id="alert_result" role="alert" ng-if="updateSuccess">Покемон {{pokemon.objectId}} обновился!</div>
 <form name="pokemonForm" novalidate>
     <div class="form-group">
         <label>Имя</label>
@@ -24,5 +23,5 @@
         <label>Рост</label>
         <input class="form-control" ng-model="pokemon.height" type="text" placeholder="Рост">
     </div>
-    <button type="submit" class="btn btn-default" ng-click="updatePokemon()" ng-disabled="pokemonForm.$invalid">Обновить</button>
+    <button id="update_pokemon" type="submit" class="btn btn-default" ng-click="updatePokemon()" ng-disabled="pokemonForm.$invalid">Обновить</button>
 </form>

@@ -11,7 +11,7 @@ var server = require('gulp-server-livereload');
 gulp.task('webserver', function() {
  gulp.src('')
    .pipe(server({
-     livereload:       true,
+     livereload:       false,
      open:             true,
      log:              'debug',
      clientConsole:    true,

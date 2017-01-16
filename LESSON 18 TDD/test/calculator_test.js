@@ -35,7 +35,23 @@ describe('string calculator factorial', function () {
 
         let factorial = calculator.number(3);
 
-        assert.equal(factorial, 6);
+        assert.equal(factorial, 1*2*3);
+
+    });
+    it('should return 1*2*3*4*5*6*7*8*9*10 factorial if first param is 10', function () {
+        let calculator = createCalculator();
+
+        let factorial = calculator.number(10);
+
+        assert.equal(factorial, 1*2*3*4*5*6*7*8*9*10 );
+
+    });
+    it('should return 1*2*3*4*5*__*7*8*9*10 factorial if first param is 10 and second param is 6', function () {
+        let calculator = createCalculator();
+
+        let factorial = calculator.number(10, 6);
+
+        assert.equal(factorial, 1*2*3*4*5*7*8*9*10 );
 
     });
 })

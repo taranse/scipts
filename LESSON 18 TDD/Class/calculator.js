@@ -3,18 +3,19 @@ class Calculator {
     constructor(){
         this.defaultEmptyValue = 0;
     }
-    number(input){
+    number(input, skip){
         if(this.isEmpty(input)) {
             return this.defaultEmptyValue;
         }
-        let factorial = this.factorialWhile(input);
+        let factorial = this.factorialWhile(input, skip);
         return this.isNull(factorial);
     }
 
-    factorialWhile(input) {
+    factorialWhile(input, skip) {
         let factorial = 1;
-        for (let i = 1; i < input; i++) {
-            factorial *= i + 1;
+        for (let i = 1; i <= input; i++) {
+            if(i == skip) continue;
+            factorial *= i;
         }
         return factorial;
     }

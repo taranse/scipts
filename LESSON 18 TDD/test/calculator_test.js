@@ -59,7 +59,7 @@ describe('string calculator factorial', function () {
 
         let factorial = calculator.number(10, 8);
 
-        assert.equal(factorial, 1*2*3*4*5*7*6*9*10 );
+        assert.equal(factorial, 1*2*3*4*5*6*7*9*10 );
 
     });
 })

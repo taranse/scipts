@@ -29,5 +29,13 @@ describe('string calculator factorial', function () {
 
         assert.equal(factorial, 2);
 
-    })
+    });
+    it('should return 6 factorial if first param is 3', function () {
+        let calculator = createCalculator();
+
+        let factorial = calculator.number(3);
+
+        assert.equal(factorial, 6);
+
+    });
 })

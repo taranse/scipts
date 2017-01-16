@@ -21,20 +21,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="calculator_test.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="calculator_test.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/calculator_test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="505">
-              <caret line="53" column="41" lean-forward="false" selection-start-line="53" selection-start-column="41" selection-end-line="53" selection-end-column="41" />
+            <state relative-caret-position="405">
+              <caret line="61" column="45" lean-forward="false" selection-start-line="61" selection-start-column="45" selection-end-line="61" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="calculator.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="calculator.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Class/calculator.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
+            <state relative-caret-position="320">
               <caret line="16" column="35" lean-forward="false" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
               <folding />
             </state>
@@ -46,8 +46,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/test/calculator_test.js" />
         <option value="$PROJECT_DIR$/Class/calculator.js" />
+        <option value="$PROJECT_DIR$/test/calculator_test.js" />
       </list>
     </option>
   </component>
@@ -210,14 +210,11 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1484600644004</updated>
-      <workItem from="1484600646577" duration="3169000" />
+      <workItem from="1484600646577" duration="3379000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Tests - 2017.01.17 at 00h 52m 39s.xml">
-      <configuration name="Tests" configurationId="mocha-javascript-test-runner" />
-    </history-entry>
     <history-entry file="Tests - 2017.01.17 at 00h 53m 50s.xml">
       <configuration name="Tests" configurationId="mocha-javascript-test-runner" />
     </history-entry>
@@ -245,9 +242,12 @@
     <history-entry file="Tests - 2017.01.17 at 00h 58m 11s.xml">
       <configuration name="Tests" configurationId="mocha-javascript-test-runner" />
     </history-entry>
+    <history-entry file="Tests - 2017.01.17 at 00h 59m 14s.xml">
+      <configuration name="Tests" configurationId="mocha-javascript-test-runner" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3169000" />
+    <option name="totallyTimeSpent" value="3379000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1916" height="1047" extended-state="0" />
@@ -282,18 +282,18 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test/calculator_test.js">
+    <entry file="file://$PROJECT_DIR$/Class/calculator.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="53" column="41" lean-forward="false" selection-start-line="53" selection-start-column="41" selection-end-line="53" selection-end-column="41" />
+        <state relative-caret-position="320">
+          <caret line="16" column="35" lean-forward="false" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Class/calculator.js">
+    <entry file="file://$PROJECT_DIR$/test/calculator_test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="16" column="35" lean-forward="false" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+        <state relative-caret-position="405">
+          <caret line="61" column="45" lean-forward="false" selection-start-line="61" selection-start-column="45" selection-end-line="61" selection-end-column="45" />
           <folding />
         </state>
       </provider>

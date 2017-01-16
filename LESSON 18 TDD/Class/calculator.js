@@ -1,7 +1,17 @@
 'use strict';
 class Calculator {
+    constructor(){
+        this.defaultEmptyValue = 0;
+    }
     number(input){
-        return 0;
+        if(this.isEmpty(input)) {
+            return this.defaultEmptyValue;
+        }
+        return 1;
+    }
+
+    isEmpty(input) {
+        return input == undefined || input === '';
     }
 }
 module.exports =  Calculator;

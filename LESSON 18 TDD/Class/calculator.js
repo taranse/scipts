@@ -7,9 +7,11 @@ class Calculator {
         if(this.isEmpty(input)) {
             return this.defaultEmptyValue;
         }
-        return 1;
+        return this.isNull(input);
     }
-
+    isNull(input){
+        return parseInt(input, 10) == 0 ? 1 : parseInt(input, 10);
+    }
     isEmpty(input) {
         return input == undefined || input === '';
     }

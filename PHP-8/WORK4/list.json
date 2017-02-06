@@ -1,0 +1,42 @@
+[
+    {
+        "firstName": "Ivan",
+        "lastName": "Sidorov",
+        "adress": {
+            "city": "Moscow",
+            "street": "Baker Street",
+            "house": "96"
+        },
+        "phoneNumber": "8 800 555 35 35"
+    },
+    {
+        "firstName": "Denis",
+        "lastName": "Petrov",
+        "adress": {
+            "city": "Volgograd",
+            "street": "Sturmanskaya",
+            "house": "9"
+        },
+        "phoneNumber": "8 800 575 38 95"
+    },
+    {
+        "firstName": "Egor",
+        "lastName": "Krug",
+        "adress": {
+            "city": "Vladivostok",
+            "street": "Dmitrovskaya",
+            "house": "33"
+        },
+        "phoneNumber": "8 911 599 104 2"
+    },
+    {
+        "firstName": "Vasilisa",
+        "lastName": "Prigozhnaya",
+        "adress": {
+            "city": "Yral",
+            "street": "Portovaya",
+            "house": "51"
+        },
+        "phoneNumber": "8 756 332 81 81"
+    }
+]

@@ -1,4 +1,4 @@
-var pokemonApp = angular.module('PokemonApp', ['ngRoute', 'btford.socket-io']);
+var pokemonApp = angular.module('PokemonApp', ['ngRoute', 'btford.socket-io', '']);
 
 angular
     .module('PokemonApp')
@@ -34,7 +34,7 @@ angular
 ])
 
 .factory('mySocket', function(socketFactory) {
-  var myIoSocket = io.connect('https://netology-socket-io.herokuapp.com/');
+  var myIoSocket = io.connect('http://localhost');
 
     mySocket = socketFactory({
       ioSocket: myIoSocket

@@ -21,7 +21,6 @@ io.on('connection', function (socket) {
         });
     });
 
-
 });
 io.on('disconnection', function (socket) {
     console.log(socket);

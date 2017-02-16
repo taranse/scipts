@@ -1,8 +1,13 @@
+<?php
+session_start();
+if(!empty($_COOKIE['Ban'])){
+	exit('Вы забанены, зайдите позже');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Авторизация</title>
 </head>
 <body>
     <form action="http://university.netology.ru/user_data/plyakin/work-8/autorization.php" method="post">
@@ -10,6 +15,13 @@
        <input type="hidden" name="type" value="admin">
         <label>Логин</label><br> <input type="text" name="login" required><br><br>
         <label>Пароль</label><br> <input type="password" name="password" required><br><br>
+        <?php
+		echo 'осталось попыток: ' . (10 - $_SESSION['ERR_COUNT']);
+		if(isset($_SESSION['ERR_COUNT']) and $_SESSION['ERR_COUNT'] > 4){ ?>
+		<img src="captcha.jpg" alt=""><br>
+			<label>Каптча</label><br> <input type="text" name="captcha" required><br><br>
+		<?php }
+		?>
         <input type="submit"><br><br>
     </form>
     <form action="http://university.netology.ru/user_data/plyakin/work-8/autorization.php" method="post">        

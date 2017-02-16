@@ -3,7 +3,12 @@
 session_start();
 if(empty($_SESSION['TYPE'])){
     header('location: http://university.netology.ru/user_data/plyakin/work-8/');
-} ?>
+} 
+
+if(!empty($_COOKIE['Ban'])){
+	exit('Вы забанены, зайдите позже');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

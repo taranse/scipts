@@ -7,6 +7,9 @@ if(empty(json_decode($test))) {
 	header($_SERVER['SERVER_PROTOCOL']." 404 Not Found");
 }
 
+if(!empty($_COOKIE['Ban'])){
+	exit('Вы забанены, зайдите позже');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

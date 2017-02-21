@@ -9,9 +9,10 @@
 	$filelist = glob("tests/*.json");
 	echo '<h3>Список загруженных тестов</h3>';
 	foreach($filelist as $file) {
-		$file = explode('/', $file)[1];
+		$file = explode('/test-', $file)[1];
+		$link = explode('.', $file)[0];
 		?>
-		<a href="http://university.netology.ru/user_data/plyakin/work-7/test.php?file=<?= $file ?>">
+		<a href="http://university.netology.ru/user_data/plyakin/work-7/test.php?file=<?= $link ?>">
 			<?= $file ?>
 		</a><br>
 		<?php

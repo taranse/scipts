@@ -1,6 +1,6 @@
 <?php
 
-$test = file_get_contents('http://university.netology.ru/user_data/plyakin/work-6/tests/test-' . $_GET['file'] );
+$test = file_get_contents('http://university.netology.ru/user_data/plyakin/work-6/tests/test-' . $_GET['file'] . '.json' );
 $json = json_decode($test);
 if(empty(json_decode($test))) {
 	header($_SERVER['SERVER_PROTOCOL']." 404 Not Found");

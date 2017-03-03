@@ -1,0 +1,3 @@
+[submodule "LESSON 11 Mongoose/protractor"]
+	path = LESSON 11 Mongoose/protractor
+	url = ../../angular/protractor.git

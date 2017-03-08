@@ -1,3 +1,8 @@
+<?php
+include 'DataBase.php';
+$base = new DataBase();
+
+?>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -8,53 +13,60 @@
     <title>Список задач на сегодня</title>
     <style>
         table td, table th {
-            border: 1px solid #ccc;
-            padding: 10px;
+            border:1px solid #ccc;
+            padding:10px;
         }
         table th {
-            background: #eee;
+            background:#eee;
         }
         table {
-            border-spacing: 0;
-            border-collapse: collapse;
+            border-spacing:0;
+            border-collapse:collapse;
         }
     </style>
 </head>
 <body>
-    <h1>Что же мне сегодня нужно сделать?</h1>
+<h1>Что же мне сегодня нужно сделать?</h1>
 
-    <h2>Добавлю в задачник!</h2>
-    <br>
-    <form action="taskList.php" method="post">
-        <label> Описание задачи <br>
-            <textarea name="description" cols="30" rows="10"></textarea>
-        </label><br>
-        <input type="submit" value="Добавить задачу" name="">
-    </form>
+<h2>Добавлю в задачник!</h2>
+<br>
+<form action="taskList.php" method="get">
+    <label> Описание задачи <br>
+        <textarea name="description" cols="30" rows="10"></textarea>
+    </label><br>
+    <input type="submit" value="Добавить задачу" name="insert_new_task">
+</form>
 
-    <br><br>
+<br><br>
 
-    <table>
-        <thead>
+<?php
+$list = $base->useTable('tasks')->order(['date_added' => 'DESC'])->getList();
+?>
+<table>
+    <thead>
+    <tr>
+        <th>Описание</th>
+        <th>Дата</th>
+        <th>Статус</th>
+        <th>Изменить</th>
+        <th>Выполнить</th>
+        <th>Удалить</th>
+    </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($list as $item) { ?>
             <tr>
-                <th>Описание</th>
-                <th>Дата</th>
-                <th>Статус</th>
-                <th>Изменить</th>
-                <th>Выполнить</th>
-                <th>Удалить</th>
+                <td><?= $item->description ?></td>
+                <td><?= $item->date_added ?></td>
+                <td style="color: <?= $item->is_done ? 'green' : 'red' ?>">
+                    <?= $item->is_done ? 'Выполнено' : 'Не выполнено' ?>
+                </td>
+                <td>Изменить</td>
+                <td>Выполнить</td>
+                <td>Удалить</td>
             </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>4</td>
-                <td>5</td>
-                <td>6</td>
-            </tr>
-        </tbody>
-    </table>
+        <?php } ?>
+    </tbody>
+</table>
 </body>
 </html>

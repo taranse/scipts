@@ -1,7 +1,15 @@
 <?php
-
 include 'DataBase.php';
-phpinfo();
-//$base = new DataBase();
-//
-//print_r($base->query('SELECT * FROM tasks'));
+$base = new DataBase();
+
+if (!empty($_GET['insert_new_task'])) {
+    $base
+        ->useTable('tasks')
+        ->values([
+            'description' => $_GET['description'],
+            'is_done' => 0,
+            'date_added' => 'NOW()'
+        ])
+        ->insert('test');
+    header('location: ' . $_SERVER['HTTP_REFERER']);
+}

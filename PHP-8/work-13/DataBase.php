@@ -16,17 +16,28 @@ class DataBase extends mysqli
 
     public function useTable($tableName)
     {
+        $this->queryParams = [];
         $this->queryParams['table'] = $tableName;
         return $this;
     }
 
     public function set($array = null)
     {
-        $setArray = [];
+        $valueTypes = [];
         foreach ($array as $key => $value) {
-            $setArray[] = $key . ' = ' . $value;
+            if ($value == 'NOW()') {
+                $valueTypes[] = $key . ' = ' . $value;
+            } else {
+                if (gettype($value) == 'string') {
+                    $valueTypes[] = $key . ' = ' . '"' . $value . '"';
+                } else if (gettype($value) == 'integer') {
+                    $valueTypes[] = $key . ' = ' . $value;
+                } else {
+                    $valueTypes[] = $key . ' = ' . $value;
+                }
+            }
         }
-        $this->queryParams['set'] = ' SET ' . implode(", ", $setArray);
+        $this->queryParams['set'] = ' SET ' . implode(", ", $valueTypes);
         return $this;
     }
 
@@ -58,17 +69,28 @@ class DataBase extends mysqli
 
     public function where($array = null)
     {
-        $whereArray = [];
+        $valueTypes = [];
         foreach ($array as $key => $value) {
-            $whereArray[] = $key . ' = ' . $value;
+            if ($value == 'NOW()') {
+                $valueTypes[] = $key . ' = ' . $value;
+            } else {
+                if (gettype($value) == 'string') {
+                    $valueTypes[] = $key . ' = ' . '"' . $value . '"';
+                } else if (gettype($value) == 'integer') {
+                    $valueTypes[] = $key . ' = ' . $value;
+                } else {
+                    $valueTypes[] = $key . ' = ' . $value;
+                }
+            }
         }
-        $this->queryParams['where'] = ' WHERE ' . implode(" AND ", $whereArray);
+        $this->queryParams['where'] = ' WHERE ' . implode(" AND ", $valueTypes);
         return $this;
     }
 
     public function update()
     {
         $query = $this->queryParams;
+        print_r('UPDATE ' . $query['table'] . $query['set'] . $query['where']);
         $this->db->query('UPDATE ' . $query['table'] . $query['set'] . $query['where']);
     }
 
@@ -86,6 +108,12 @@ class DataBase extends mysqli
     {
         $query = $this->queryParams;
         $this->db->query('INSERT INTO ' . $query['table'] . ' ' . $query['values']);
+    }
+
+    public function delete()
+    {
+        $query = $this->queryParams;
+        $this->db->query('DELETE FROM ' . $query['table'] . $query['where']);
     }
 
     public function getList($array = null)

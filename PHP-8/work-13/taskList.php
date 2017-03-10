@@ -1,52 +1,52 @@
 <?php
-include 'DataBase.php';
-$base = new DataBase();
+
+function updateWithId($db, $sql, $array)
+{
+    $db->prepare($sql)->execute($array);
+    $url = parse_url($_SERVER['HTTP_REFERER']);
+    header('location:' . $url['path']);
+}
+
+$server = "localhost";
+$base = "test";
+
+$db = new PDO("mysql:host=$server;dbname=$base", 'root', '');
 
 if (!empty($_GET['insert_new_task'])) {
-    $base
-        ->useTable('tasks')
-        ->values([
-            'description' => htmlspecialchars($_GET['description']),
-            'is_done' => 0,
-            'date_added' => 'NOW()'
-        ])
-        ->insert('test');
-    header('location: ' . $_SERVER['HTTP_REFERER']);
+    $data = array($_GET['description'], 0, date("Y-m-d H:i:s"));
+    $sql = "INSERT INTO tasks (description, is_done, date_added) VALUES (?, ?, ?)";
+
+    $db->prepare($sql)->execute($data);
+
+    header('location:' . $_SERVER['HTTP_REFERER']);
 }
 
 if (!empty($_GET['id'])) {
-    $base
-        ->useTable('tasks')
-        ->set([
-            'is_done' => 1
-        ])
-        ->where([
-            'id' => $_GET['id']
-        ])
-        ->update();
-    header('location: ' . $_SERVER['HTTP_REFERER']);
+    updateWithId(
+        $db,
+        "UPDATE tasks SET is_done = 1 WHERE id = ?",
+        [
+            (int)$_GET['id']
+        ]
+    );
 }
 
 if (!empty($_GET['del'])) {
-    $base
-        ->useTable('tasks')
-        ->where([
-            'id' => $_GET['del']
-        ])
-        ->delete();
-    header('location: ' . $_SERVER['HTTP_REFERER']);
+    updateWithId(
+        $db,
+        "DELETE FROM tasks WHERE id = ?",
+        [
+            (int)$_GET['del']
+        ]
+    );
 }
 if (!empty($_GET['update_new_task'])) {
-    $base
-        ->useTable('tasks')
-        ->set([
-            'is_done' => 0,
-            'description' => htmlspecialchars($_GET['description']),
-            'date_added' => 'NOW()'
-        ])
-        ->where([
-            'id' => $_GET['update_id']
-        ])
-        ->update();
-    header('location: ' . $_GET['successUrl']);
+    updateWithId(
+        $db,
+        "UPDATE tasks SET is_done = 0, description = :description WHERE id = :id",
+        [
+            'id' => (int)$_GET['update_id'],
+            'description' => $_GET['description']
+        ]
+    );
 }

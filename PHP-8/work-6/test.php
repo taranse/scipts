@@ -23,7 +23,7 @@ if(empty(json_decode($test))) {
                 <?php
             }
         ?><br>
-        <input type="hidden" name="json" value='<?= json_encode($json, JSON_UNESCAPED_UNICODE) ?>'>
+        <input type="hidden" name="json" value='<?= $_GET['file'] ?>'>
         <input type="submit" value="проверить результаты">
     </form>
 </body>

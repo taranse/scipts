@@ -13,8 +13,14 @@ $base = "test";
 $db = new PDO("mysql:host=$server;dbname=$base", 'root', '');
 
 if (!empty($_GET['insert_new_task'])) {
-    $data = array($_GET['description'], 0, date("Y-m-d H:i:s"));
-    $sql = "INSERT INTO tasks (description, is_done, date_added) VALUES (?, ?, ?)";
+    $data = [
+        $_GET['description'],
+        0,
+        date("Y-m-d H:i:s"),
+        $_GET['author'],
+        $_GET['user']
+    ];
+    $sql = "INSERT INTO tasks (description, is_done, date_added, author, user) VALUES (?, ?, ?, ?, ?)";
 
     $db->prepare($sql)->execute($data);
 

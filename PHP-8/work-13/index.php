@@ -1,4 +1,6 @@
 <?php
+
+
 function getListItem($list, $id)
 {
     $id = (int) $id;
@@ -19,6 +21,7 @@ $sql = "SELECT * FROM tasks ORDER BY $sort DESC";
 
 $list = $db->query($sql)->fetchAll();
 
+$url = parse_url($_SERVER['REQUEST_URI']);
 ?>
 
 <!doctype html>

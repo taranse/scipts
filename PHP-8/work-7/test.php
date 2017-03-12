@@ -1,6 +1,6 @@
 <?php
 
-$test = file_get_contents('http://university.netology.ru/user_data/plyakin/work-6/tests/test-' . $_GET['file'] . '.json' );
+$test = file_get_contents('http://university.netology.ru/user_data/plyakin/work-7/tests/test-' . $_GET['file'] . '.json' );
 $json = json_decode($test);
 if(empty(json_decode($test))) {
 	header($_SERVER['SERVER_PROTOCOL']." 404 Not Found");
@@ -24,7 +24,7 @@ if(empty(json_decode($test))) {
                 <?php
             }
         ?><br>
-        <input type="hidden" name="json" value='<?= json_encode($json, JSON_UNESCAPED_UNICODE) ?>'>
+        <input type="hidden" name="json" value='<?= $_GET['file'] ?>'>
         <input type="submit" value="проверить результаты">
     </form>
 </body>

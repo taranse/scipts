@@ -1,0 +1,13 @@
+{
+    "name": "nthm",
+    "description": "netology homework",
+    "require": {
+        "yandex/geo": "^1.1"
+    },
+    "authors": [
+        {
+            "name": "Evgeny",
+            "email": "bboy.stenli@yandex.ru"
+        }
+    ]
+}

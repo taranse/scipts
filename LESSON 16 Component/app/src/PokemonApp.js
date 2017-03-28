@@ -1,10 +1,10 @@
-var pokemonApp = angular.module('PokemonApp', ['ngRoute', 'ngResource', 'restangular', 'ui.bootstrap', 'ngMaterial']);
+var pokemonApp = angular.module('PokemonApp', ['ngRoute', 'ngResource', 'ui.bootstrap', 'ngMaterial']);
 
 angular.
 module('PokemonApp')
 
-.config(['$routeProvider', 'RestangularProvider',
-    function config($routeProvider, RestangularProvider) {
+.config(['$routeProvider',
+    function config($routeProvider) {
 
         $routeProvider.
         when('/pokemons', {
@@ -25,7 +25,7 @@ module('PokemonApp')
             redirectTo: '/'
         });
 
-        RestangularProvider.setBaseUrl('https://api.backendless.com/v1/data/');
+        //RestangularProvider.setBaseUrl('https://api.backendless.com/v1/data/');
 
     }
 ])

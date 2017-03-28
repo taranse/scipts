@@ -89,7 +89,7 @@ if (!empty($_GET['update_id'])) { ?>
     <form action="taskList.php" method="get">
         <label> Описание задачи <br>
             <textarea name="description" cols="30"
-                      rows="10"><?= getListItem($list, $_GET['update_id'])['description'] ?></textarea>
+                      rows="10"><?= htmlspecialchars(getListItem($list, $_GET['update_id'])['description']) ?></textarea>
         </label><br><br>
         <label> Закрепить за пользователем <br>
             <select name="user">

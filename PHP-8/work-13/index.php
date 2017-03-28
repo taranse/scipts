@@ -57,7 +57,7 @@ if (!empty($_GET['update_id'])) { ?>
     <form action="taskList.php" method="get">
         <label> Описание задачи <br>
             <textarea name="description" cols="30"
-                      rows="10"><?= getListItem($list, $_GET['update_id'])['description'] ?></textarea>
+                      rows="10"><?= htmlspecialchars(getListItem($list, $_GET['update_id'])['description']) ?></textarea>
         </label><br>
         <input type="hidden" name="update_id" value="<?= $_GET['update_id'] ?>">
         <input type="submit" value="Обновить задачу" name="update_new_task">

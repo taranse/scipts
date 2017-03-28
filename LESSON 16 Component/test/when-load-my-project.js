@@ -5,7 +5,7 @@ describe('when load my project page', function () {
         var title = browser.getTitle();
         expect(title).toEqual('Фреймворк AngularJS / Нетология');
     });
-    
+
     it('enter create pokemon page', function () {
         element(by.id('create_pokemon')).click();
         var title = element(by.css('.md-headline')).getText();
@@ -28,7 +28,7 @@ describe('when load my project page', function () {
         var title = element(by.css('h1')).getText();
         expect(title).toEqual(text.toUpperCase());
     });
-    
+
     it('update new pokemon', function () {
         // var title = '123';
         var title = element(by.id('pokemon_id')).getText().then(function(text){

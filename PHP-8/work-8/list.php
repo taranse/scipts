@@ -19,17 +19,21 @@ if(!empty($_COOKIE['Ban'])){
 	<?php
 	$filelist = glob("tests/*.json");
 	echo '<h3>Список загруженных тестов</h3>';
-	foreach($filelist as $file) {
-		$file = explode('/test-', $file)[1];
-		$link = explode('.', $file)[0];
-		?>
-		<a href="http://university.netology.ru/user_data/plyakin/work-8/test.php?file=<?= $link ?>">
-			<?= $file ?>
-		</a><br>
-		<?php
-	}
+    if(!$filelist) {
+        echo 'Нет тестов';
+    } else {
+        foreach($filelist as $file) {
+            $file = explode('/test-', $file)[1];
+            $link = explode('.', $file)[0];
+            ?>
+            <a href="http://university.netology.ru/user_data/plyakin/work-8/test.php?file=<?= $link ?>">
+                <?= $file ?>
+            </a> &nbsp; - &nbsp; <a href="http://university.netology.ru/user_data/plyakin/work-8/delete.php?file=<?= $link ?>">Удалить</a><br><br>
+            <?php
+        }
+    }	
 	?>
-	<br>
+	<br><br>
 	<br>
 	<?php if($_SESSION['TYPE'] == 'admin'){ ?>
 	<a href="http://university.netology.ru/user_data/plyakin/work-8/admin.php">Загрузить новый</a>

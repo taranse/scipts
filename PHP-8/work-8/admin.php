@@ -22,6 +22,8 @@ if(empty($_SESSION['TYPE'])){
 	</form>
 	<br>
 	<br>
+	<a href="http://university.netology.ru/user_data/plyakin/work-8/list.php">Список тестов</a>
+	<br>
 	<h3><?= $_SESSION['NAME']; ?></h3>
 	<a href="http://university.netology.ru/user_data/plyakin/work-8/autorization.php?logout=true">Выйти</a>
 </body>

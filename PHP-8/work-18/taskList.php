@@ -46,10 +46,11 @@ if (!empty($_GET['del'])) {
 if (!empty($_GET['update_new_task'])) {
     updateWithId(
         $db,
-        "UPDATE tasks SET is_done = 0, description = :description WHERE id = :id",
+        "UPDATE tasks SET is_done = 0, description = :description, user = :user WHERE id = :id",
         [
             'id' => (int)$_GET['update_id'],
-            'description' => $_GET['description']
+            'description' => $_GET['description'],
+            'user' => $_GET['user']
         ]
     );
 }

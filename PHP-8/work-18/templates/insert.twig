@@ -1,0 +1,29 @@
+<form action="taskList.php" method="get">
+    <label> Описание задачи <br>
+        <textarea name="description" cols="30" rows="10">{{ description }}</textarea>
+    </label><br><br>
+    <label> Закрепить за пользователем <br>
+        <select name="user">
+            <option value="0" {{ author == 0 ? 'selected' : '' }}>Моя задача</option>
+            {% for user in users %}
+                {% if action == 'insert' %}
+                    {% if yourLogin != user.login %}
+                        <option value="{{ user.id }}" >{{ user.login }}</option>
+                    {% endif %}
+                {% elseif action == 'update' %}
+                    {% if itemId != 0 and yourLogin != user.login %}
+                        <option {{ userLogin == user.id ? 'selected' : '' }} value="{{ user.id }}" >{{ user.login }}</option>
+                    {% endif %}
+                {% endif %}
+
+            {% endfor %}
+
+                    {#if ($taskList->getListItem($list, $_GET['update_id'])['id'] !== 0) {#}
+            {#echo '<option value="' . $user['id'] . '" >' . $user['login'] . '</option>';#}
+            {#}#}
+        </select>
+    </label><br><br>
+    <input type="hidden" name="update_id" value="{{ update_id }}">
+    <input type="hidden" name="author" value="{{ yourId }}">
+    <input type="submit" value="Обновить задачу" name="update_new_task">
+</form>

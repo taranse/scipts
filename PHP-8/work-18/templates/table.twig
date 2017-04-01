@@ -1,0 +1,63 @@
+<table style="float:left;margin: 15px">
+    <thead>
+    <tr>
+        <th>Описание</th>
+        <th>Дата</th>
+        <th>Статус</th>
+        <th>Изменить</th>
+        <th>Выполнить</th>
+        <th>Удалить</th>
+        <th>Исполнитель</th>
+        <th>Создатель задачи</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for key, item in list %}
+        <tr>
+            <td>{{ item.description|e('html') }}</td>
+            <td>{{ item.date_added }}</td>
+            <td style="color: {{ item.is_done ? 'green' : 'red' }}">
+                {{ item.is_done ? 'Выполнено' : 'Не выполнено' }}
+            </td>
+
+            <td>
+                {% if authorname[key] == yourLogin %}
+                    {% if update_id and update_id == item.id %}
+                        Изменяется
+                    {% else %}
+                        <a href="index.php?update_id={{ item.id }}">Изменить</a>
+                    {% endif %}
+                {% endif %}
+            </td>
+            <td>
+                {% if item.is_done %}
+                    Готово
+                {% else %}
+                    {% if username[key] == yourLogin %}
+                        <a href="taskList.php?id={{ item.id }}">Выполнить</a>
+                    {% endif %}
+                {% endif %}
+            </td>
+            <td>
+                {% if authorname[key] == yourLogin %}
+                    <a href="taskList.php?del={{ item.id }}">Удалить</a>
+                {% endif %}
+            </td>
+            <td>
+                {% if username[key] == null or username[key] == yourLogin  %}
+                    Вы
+                {% else %}
+                    {{ username[key] }}
+                {% endif %}
+            </td>
+            <td>
+                {% if authorname[key] == null or authorname[key] == yourLogin %}
+                    Вы
+                {% else %}
+                    {{ authorname[key] }}
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

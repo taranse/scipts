@@ -19,7 +19,6 @@ class Authorize
     public function regNewUser($login, $password)
     {
         $this->db
-            ->prepare('INSERT INTO users (login, password) VALUE (?, ?)')
-            ->execute([$login, md5($password)]);
+            ->query("INSERT INTO users (login, password) VALUES ('" . $login . "', '" . md5($password) . "')");
     }
 }

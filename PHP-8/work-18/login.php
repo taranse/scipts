@@ -1,37 +1,22 @@
 <?php
 
-
-require 'db.php';
-require 'model/Authorize.php';
-require 'controller/AuthorizeController.php';
-
-$authorize = new Authorize($db);
-$auth = new AuthorizeController($authorize);
+require_once "controller/AuthorizeController.php";
+require_once "model/Authorize.php";
+$auth = new AuthorizeController(new Authorize($db));
 
 
-function isNotEmptyGet($param = null)
-{
-    return !empty($_GET[$param]);
-}
-
-$regLogin = isNotEmptyGet('reg_login') ? $_GET['reg_login'] : '';
-$login = isNotEmptyGet('login') ? $_GET['login'] : '';
-$password = isNotEmptyGet('password') ? $_GET['password'] : '';
-$regPassword = isNotEmptyGet('reg_password') ? $_GET['reg_password'] : '';
-$repeatPassword = isNotEmptyGet('repeat_password') ? $_GET['repeat_password'] : '';
-
-
+$regLogin = $auth->isNotEmptyGet('reg_login') ? $_GET['reg_login'] : '';
+$login = $auth->isNotEmptyGet('login') ? $_GET['login'] : '';
+$password = $auth->isNotEmptyGet('password') ? $_GET['password'] : '';
+$regPassword = $auth->isNotEmptyGet('reg_password') ? $_GET['reg_password'] : '';
+$repeatPassword = $auth->isNotEmptyGet('repeat_password') ? $_GET['repeat_password'] : '';
 
 
 if (!empty($_GET)) {
-    if (isNotEmptyGet('log')) {
-
+    if ($auth->isNotEmptyGet('log')) {
         $auth->login($login, $password);
-
-    } else if (isNotEmptyGet('reg')) {
-
+    } else if ($auth->isNotEmptyGet('reg')) {
         $auth->register($regLogin, $regPassword, $repeatPassword);
-
     }
 }
 ?>

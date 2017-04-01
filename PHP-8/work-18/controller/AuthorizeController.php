@@ -1,7 +1,6 @@
 <?php
 
 session_start();
-
 class AuthorizeController
 {
 
@@ -27,7 +26,7 @@ class AuthorizeController
     public function register($regLogin, $regPassword, $repeatPassword)
     {
 
-        if ((!isNotEmptyGet('reg_password') or !isNotEmptyGet('repeat_password')) or $regPassword !== $repeatPassword) {
+        if ((!$this->isNotEmptyGet('reg_password') or !$this->isNotEmptyGet('repeat_password')) or $regPassword !== $repeatPassword) {
             echo 'Пароли не совпадают';
         } else {
             if (empty($this->model->getUser($regLogin, $regPassword))) {
@@ -40,5 +39,10 @@ class AuthorizeController
 
         }
 
+    }
+
+    public function isNotEmptyGet($param = null)
+    {
+        return !empty($_GET[$param]);
     }
 }

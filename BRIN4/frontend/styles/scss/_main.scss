@@ -1,0 +1,32 @@
+h2 {font-family:PFDMedium, serif; font-size:2.5rem; text-transform:uppercase;margin:0}
+h3 {font-family:PFDMedium, serif; font-size:2rem; margin:0}
+h4 {font-family:PFDRegular, serif; font-size:1.8rem; margin:0}
+@media (max-width: 900px) {
+	h2 { font-size:2rem;}
+	h3 { font-size:1.7rem;}
+	h4 { font-size:1.5rem;}
+}
+@media (max-width: 600px) {
+	h2 { font-size:1.8rem;}
+	h3 { font-size:1.5rem;}
+	h4 { font-size:1.3rem;}
+}
+.mar {
+	&-30 {margin-bottom:28px;height:2px;clear:both;}
+}
+
+.relative {position:relative}
+.absolute {position:absolute}
+section{padding:40px 0 20px}
+.active-block {
+	padding: 20px 0; background:url(../../assets/img/arrow.png) no-repeat top right;width:490px;
+	height:210px;display:flex;justify-content:center;align-items:center;margin:10px auto;
+	@media (max-width:600px) {
+		background: none;width:100%;height:auto;
+	}
+	button {
+		padding:0;border: 0; background:transparent url(../../assets/img/button.png) no-repeat center center;height:100px;width:390px;
+		&:hover { background-image:url(../../assets/img/button-hover.png);}
+		&:active { background-image:url(../../assets/img/button-active.png);}
+	}
+}

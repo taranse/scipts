@@ -14,11 +14,9 @@ const CopyWebpackPlugin       = require('copy-webpack-plugin');
 
 module.exports = {
     entry:   {
-        //"mask":  "./frontend/mask.js",
         "materialize":  "./frontend/materialize.js",
         "main":  "./frontend/main.js",
         "styles": "./frontend/styles/styles.scss"
-        //"fonts": "https://fonts.googleapis.com/icon?family=Material+Icons"
     },
     output:  {
         path:     path.resolve('./'),
@@ -36,8 +34,9 @@ module.exports = {
             },
             {test: /\.html$/, use: 'raw-loader'},
             {test: /\.css$/, use: ['to-string-loader', 'css-loader']},
-            {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff&name=[path][name].[ext]"},
-            {test: /\.(ttf|otf|eot|svg|jpg|png)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file?name=[path][name].[ext]'},
+            {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&name=assets/fonts/[name].[ext]&mimetype=application/font-woff"},
+            {test: /\.(ttf|otf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file-loader?name=assets/fonts/[name].[ext]'},
+            {test: /\.(svg|jpg|png)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file-loader?name=assets/img/[name].[ext]'},
             {
                 "test":    /\.scss$|\.sass$/,
                 "loaders": ExtractTextPlugin.extract({

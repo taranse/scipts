@@ -1,3 +1,4 @@
+* { font-family:PFDRegular, serif; font-size:104%;}
 h2 {font-family:PFDMedium, serif; font-size:2.5rem; text-transform:uppercase;margin:0}
 h3 {font-family:PFDMedium, serif; font-size:2rem; margin:0}
 h4 {font-family:PFDRegular, serif; font-size:1.8rem; margin:0}
@@ -18,9 +19,10 @@ h4 {font-family:PFDRegular, serif; font-size:1.8rem; margin:0}
 .relative {position:relative}
 .absolute {position:absolute}
 section{padding:40px 0 20px}
+.uppercase { text-transform:uppercase;}
 .active-block {
 	padding: 20px 0; background:url(../../assets/img/arrow.png) no-repeat top right;width:490px;
-	height:210px;display:flex;justify-content:center;align-items:center;margin:10px auto;
+	height:190px;display:flex;justify-content:center;align-items:center;margin:10px auto;
 	@media (max-width:600px) {
 		background: none;width:100%;height:auto;
 	}
@@ -28,5 +30,13 @@ section{padding:40px 0 20px}
 		padding:0;border: 0; background:transparent url(../../assets/img/button.png) no-repeat center center;height:100px;width:390px;
 		&:hover { background-image:url(../../assets/img/button-hover.png);}
 		&:active { background-image:url(../../assets/img/button-active.png);}
+		@media (max-width:450px) {
+			background-size: contain;width:100%;height:25vw;
+		}
 	}
+}
+
+.line-paragraph {
+	padding-left:60px;position:relative;
+	&:before {content: "";height:2px;width: 50px;position:absolute;left:0;top: 10px; background-color:red;}
 }

@@ -1,0 +1,24 @@
+#about {
+	overflow:hidden;
+	.about-img {
+		p {position:absolute; line-height:1;width:100%;}
+		img {width:70%}
+	}
+}
+.about-img p:nth-child(2) {top: 7%;left:50%}
+.about-img p:nth-child(3) {top: 27%;left:61%}
+.about-img p:nth-child(4) {top: 44%;left:66%}
+.about-img p:nth-child(5) {top: 62%;left:65%}
+.about-img p:nth-child(6) {top: 80%;left:61%}
+@media (min-width: 1600px) {
+	#about {
+		.about-img {
+			p {line-height:1.4}
+		}
+	}
+	.about-img p:nth-child(2) {top: 8%;left:51%}
+	.about-img p:nth-child(3) {top: 28%;left:62%}
+	.about-img p:nth-child(4) {top: 45%;left:67%}
+	.about-img p:nth-child(5) {top: 63%;left:66%}
+	.about-img p:nth-child(6) {top: 81%;left:62%}
+}

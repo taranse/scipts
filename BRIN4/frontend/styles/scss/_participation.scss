@@ -1,0 +1,13 @@
+section#participation {
+	padding:0;
+	.row {
+		margin: 0;
+	}
+	.black {
+		padding:30px 0;
+	}
+	.grey {
+		padding-top: 20px;
+		.active-block {margin-top:-20px}
+	}
+}

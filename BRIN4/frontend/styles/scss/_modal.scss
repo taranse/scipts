@@ -1,0 +1,14 @@
+#modal {
+	max-width: 750px;
+	background: url(../../assets/img/bg-modal.jpg) no-repeat;
+	background-size: cover;
+	input {
+		width: 100%;max-width: 360px;height:66px;border-radius:10px;border: 1px solid #333;color: black;padding-left:30px;box-sizing: border-box;
+	}
+	button {
+		width: 100%;max-width: 360px;height:66px;border-radius:10px;border-bottom: 5px solid #930026; font-size:1.5rem;padding: 0;
+	}
+	@media (max-width:400px) {
+		button { font-size:1.2rem;}
+	}
+}

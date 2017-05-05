@@ -1,0 +1,19 @@
+#header {
+	background: url(../../assets/img/bg-head.jpg) no-repeat bottom center;padding-top:0;
+	h5 {
+		img {margin-bottom: -6px;margin-right:10px }
+	}
+	.change {
+		font-family:PFDMedium, serif; text-transform:uppercase; font-size:1.3rem; font-weight:bold;border:3px solid #EEEEEE;flex-wrap: wrap;
+		div {
+			padding: 15px 0;width:50%;display:flex;justify-content:space-around;
+			@media (max-width:600px) {
+				width:100%;
+			}
+		}
+	}
+	.sov {
+		margin: -10px 0;
+	}
+	.img {max-width: 100%}
+}
